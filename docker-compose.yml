@@ -1,0 +1,20 @@
+
+
+version: '2.0'
+services:
+  web:
+    build: .
+    ports:
+      - "80:5000"
+    volumes:
+      - /Users/deshanmu/apps/opn:/opt/opn
+    links:
+      - dbrepo:goMongo
+    container_name: goServer
+    depends_on:
+      - dbrepo
+    environment:
+      PYTHONUNBUFFERED: 'true'
+  dbrepo:
+    image: 'mongo:3.0.2'
+    container_name: goMongo
